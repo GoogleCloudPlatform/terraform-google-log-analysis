@@ -15,5 +15,21 @@
  */
 
 output "bucket_name" {
-  value = google_storage_bucket.main.name
+  value       = google_storage_bucket.ingest_bucket.name
+  description = "The Cloud Storage bucket to ingest logs from external soruces"
+}
+
+output "bigquery_dataset_name" {
+  value       = module.log_destination.resource_name
+  description = "The BigQuery dataset name which the transferred log table is in"
+}
+
+output "bigquery_table_name" {
+  value       = google_bigquery_table.bigquery_data_transfer_destination.table_id
+  description = "The BigQuery table name for transferred logs"
+}
+
+output "cloud_run_url" {
+  value       = google_cloud_run_service.example_website.status[0].url
+  description = "The public URL on which the deployed example website is available"
 }

@@ -4,7 +4,11 @@ This module was generated from [terraform-google-module-template](https://github
 
 The resources/services/activations/deletions that this module will create/trigger are:
 
-- Create a GCS bucket with the provided name
+- Create a GCS bucket to ingest external log files
+- Create a Cloud Run service to host a sample website
+- Create a table in BigQuery to store logs
+- Set up Logs Router to route Cloud Run web access logs to BigQuery
+- Set up a BigQuery Data Transfer Service to transfer external logs in the Cloud Storage bucket to the BigQuery table
 
 ## Usage
 
@@ -16,7 +20,6 @@ module "log_analysis" {
   version = "~> 0.1"
 
   project_id  = "<PROJECT ID>"
-  bucket_name = "gcs-test-bucket"
 }
 ```
 
@@ -27,15 +30,17 @@ Functional examples are included in the
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| bucket\_name | The name of the bucket to create | string | n/a | yes |
-| project\_id | The project ID to deploy to | string | n/a | yes |
+|------|-------------|------|---------|:--------:|
+| project\_id | The project ID to deploy to | `any` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| bucket\_name |  |
+| bigquery\_dataset\_name | The BigQuery dataset name which the transferred log table is in |
+| bigquery\_table\_name | The BigQuery table name for transferred logs |
+| bucket\_name | The Cloud Storage bucket to ingest logs from external soruces |
+| cloud\_run\_url | The public URL on which the deployed example website is available |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 

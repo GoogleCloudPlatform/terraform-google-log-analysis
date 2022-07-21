@@ -6,15 +6,17 @@ This example illustrates how to use the `log-analysis` module.
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| bucket\_name | The name of the bucket to create. | string | n/a | yes |
-| project\_id | The ID of the project in which to provision resources. | string | n/a | yes |
+|------|-------------|------|---------|:--------:|
+| project\_id | The ID of the project in which to provision resources. | `string` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| bucket\_name | The name of the bucket. |
+| bigquery\_dataset\_name | The BigQuery dataset name which the transferred log table is in |
+| bigquery\_table\_name | The BigQuery table name for transferred logs |
+| bucket\_name | The Cloud Storage bucket to ingest logs from external soruces |
+| cloud\_run\_url | The public URL on which the deployed example website is available |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
