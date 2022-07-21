@@ -102,6 +102,10 @@ module "log_export" {
   log_sink_name        = "bigquery_example_logsink"
   parent_resource_id   = var.project_id
   parent_resource_type = "project"
+  unique_writer_identity = true
+  bigquery_options = {
+    use_partitioned_tables = true
+ }
 }
 
 # Configure a Cloud Logging sink to route logs to BigQuery
