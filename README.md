@@ -53,14 +53,22 @@ These sections describe requirements for using this module.
 The following dependencies must be available:
 
 - [Terraform][terraform] v0.13
-- [Terraform Provider for GCP][terraform-provider-gcp] plugin v3.0
+- [Terraform Provider for GCP][terraform-provider-gcp] plugin v4.29.0
 
 ### Service Account
 
 A service account with the following roles must be used to provision
 the resources of this module:
 
+- Compute Admin: `roles/compute.admin`
 - Storage Admin: `roles/storage.admin`
+- Cloud Run Admin: `roles/run.admin`
+- BigQuery Data Editor: `roles/bigquery.dataEditor`
+- Service Account Admin: `roles/iam.serviceAccountAdmin`
+- Service Account User: `roles/iam.serviceAccountUser`
+- Project IAM Admin: `roles/resourcemanager.projectIamAdmin`
+- Logs Configuration Writer: `roles/logging.configWriter`
+- Service Usage Admin: `roles/serviceusage.serviceUsageAdmin`
 
 The [Project Factory module][project-factory-module] and the
 [IAM module][iam-module] may be used in combination to provision a
@@ -71,7 +79,15 @@ service account with the necessary roles applied.
 A project with the following APIs enabled must be used to host the
 resources of this module:
 
-- Google Cloud Storage JSON API: `storage-api.googleapis.com`
+- IAM API: `iam.googleapis.com`
+- Cloud Resource Manager API: `cloudresourcemanager.googleapis.com`
+- Service Usage API: `serviceusage.googleapis.com`
+- Compute Engine API: `compute.googleapis.com`
+- Cloud Storage API: `storage-api.googleapis.com`
+- Cloud Logging API: `logging.googleapis.com`
+- Cloud Run API: `run.googleapis.com`
+- BigQuery API: `bigquery.googleapis.com`
+- BigQuery Data Transfer API: `bigquerydatatransfer.googleapis.com`
 
 The [Project Factory module][project-factory-module] can be used to
 provision a project with the necessary APIs enabled.
