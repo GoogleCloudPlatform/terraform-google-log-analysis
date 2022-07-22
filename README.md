@@ -31,7 +31,9 @@ Functional examples are included in the
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| project\_id | The project ID to deploy to | `any` | n/a | yes |
+| labels | A set of key/value label pairs to assign to the resources deployed by this blueprint. | `map(string)` | `{}` | no |
+| project\_id | The project ID to provision resources to | `string` | n/a | yes |
+| region | The Google Cloud region name to provision resources in | `string` | `"us-central1"` | no |
 
 ## Outputs
 
@@ -64,6 +66,7 @@ the resources of this module:
 - Cloud Run Admin: `roles/run.admin`
 - BigQuery Admin: `roles/bigquery.admin`
 - Service Account User: `roles/iam.serviceAccountUser`
+- Create Service Accounts: `roles/iam.serviceAccountCreator`
 - Project IAM Admin: `roles/resourcemanager.projectIamAdmin`
 - Logs Configuration Writer: `roles/logging.configWriter`
 - Service Usage Admin: `roles/serviceusage.serviceUsageAdmin`
