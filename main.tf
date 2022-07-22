@@ -63,6 +63,9 @@ resource "google_storage_bucket_object" "sample_data" {
 resource "google_cloud_run_service" "example_website" {
   name     = "cloudrun-srv"
   location = var.region
+  metadata {
+    labels = var.labels
+    }
 
   template {
     spec {
@@ -134,6 +137,7 @@ resource "google_bigquery_table" "bigquery_data_transfer_destination" {
   ]
   dataset_id = module.log_destination.resource_name
   table_id   = "transferred_logs"
+  labels = var.labels
   schema     = file("./sample_access_log_schema.json")
 }
 
