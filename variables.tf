@@ -19,3 +19,9 @@ variable "project_id" {
   type        = string
 }
 
+variable "region" {
+  description = "The Google Cloud region name to provision resources in"
+  type        = string
+  default = "us-central1"
+}
+

@@ -60,11 +60,9 @@ The following dependencies must be available:
 A service account with the following roles must be used to provision
 the resources of this module:
 
-- Compute Admin: `roles/compute.admin`
 - Storage Admin: `roles/storage.admin`
 - Cloud Run Admin: `roles/run.admin`
-- BigQuery Data Editor: `roles/bigquery.dataEditor`
-- Service Account Admin: `roles/iam.serviceAccountAdmin`
+- BigQuery Admin: `roles/bigquery.admin`
 - Service Account User: `roles/iam.serviceAccountUser`
 - Project IAM Admin: `roles/resourcemanager.projectIamAdmin`
 - Logs Configuration Writer: `roles/logging.configWriter`
