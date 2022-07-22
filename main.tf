@@ -46,6 +46,7 @@ resource "random_id" "instance_id" {
 resource "google_storage_bucket" "ingest_bucket" {
   name     = "log-analysis-ingest-${random_id.instance_id.hex}"
   location = var.region
+  labels = var.labels
 }
 
 // Copy a sample file to the bucket created
@@ -113,6 +114,7 @@ module "log_destination" {
   project_id               = var.project_id
   dataset_name             = "log_analysis_example_logsink"
   log_sink_writer_identity = module.log_export.writer_identity
+  labels = var.labels
 }
 
 # Create a Service Account for Bigquery Data Transfer jobs

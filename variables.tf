@@ -25,3 +25,8 @@ variable "region" {
   default = "us-central1"
 }
 
+variable "labels" {
+  type        = map(string)
+  description = "A set of key/value label pairs to assign to the resources deployed by this blueprint."
+    default     = {}
+}
