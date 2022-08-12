@@ -115,6 +115,7 @@ module "log_destination" {
   source                   = "terraform-google-modules/log-export/google//modules/bigquery"
   project_id               = var.project_id
   dataset_name             = "log_analysis_example_logsink"
+  location = var.region
   log_sink_writer_identity = module.log_export.writer_identity
   labels                   = var.labels
 }
@@ -171,6 +172,7 @@ resource "google_bigquery_data_transfer_config" "log_transfer" {
     google_bigquery_table.bigquery_data_transfer_destination
   ]
   display_name           = "Log ingestion from GCS to BQ"
+  location = var.region
   data_source_id         = "google_cloud_storage"
   schedule               = "every day 00:00"
   destination_dataset_id = module.log_destination.resource_name
