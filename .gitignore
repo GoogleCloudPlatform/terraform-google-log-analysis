@@ -47,8 +47,5 @@ credentials.json
 # tf lock file
 .terraform.lock.hcl
 
-# Google Drive tmp files
-.tmp.drive*/
-
 # VS Code
 .vscode
