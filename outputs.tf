@@ -33,3 +33,13 @@ output "cloud_run_url" {
   value       = google_cloud_run_service.example_website.status[0].url
   description = "The public URL on which the deployed example website is available"
 }
+
+output "datastudio_report_url_1" {
+  value       = "https://datastudio.google.com/reporting/create?c.mode=edit&ds.connector=BIG_QUERY&ds.type=TABLE&ds.projectId=${var.project_id}&ds.datasetId=${module.log_destination.resource_name}&ds.tableId=${google_bigquery_table.bigquery_data_transfer_destination.table_id}"
+  description = "The URL to create a new Data Studio report that queries the table for transferred logs"
+}
+
+output "datastudio_report_url_2" {
+  value       = "https://datastudio.google.com/reporting/create?c.mode=edit&ds.connector=BIG_QUERY&ds.type=TABLE&ds.projectId=${var.project_id}&ds.datasetId=${module.log_destination.resource_name}&ds.tableId=run_googleapis_com_requests"
+  description = "The URL to create a new Data Studio report that queries the table for transferred logs"
+}

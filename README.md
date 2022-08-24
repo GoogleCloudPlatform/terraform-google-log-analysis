@@ -31,6 +31,7 @@ Functional examples are included in the
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| deployment\_name | The name used to provision resources with | `string` | `"log-analysis"` | no |
 | labels | A set of key/value label pairs to assign to the resources deployed by this blueprint. | `map(string)` | `{}` | no |
 | project\_id | The project ID to provision resources to | `string` | n/a | yes |
 | region | The Google Cloud region name to provision resources in | `string` | `"us-central1"` | no |
@@ -43,6 +44,8 @@ Functional examples are included in the
 | bigquery\_table\_name | The BigQuery table name for transferred logs |
 | bucket\_name | The Cloud Storage bucket to ingest logs from external soruces |
 | cloud\_run\_url | The public URL on which the deployed example website is available |
+| datastudio\_report\_url\_1 | The URL to create a new Data Studio report that queries the table for transferred logs |
+| datastudio\_report\_url\_2 | The URL to create a new Data Studio report that queries the table for transferred logs |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 

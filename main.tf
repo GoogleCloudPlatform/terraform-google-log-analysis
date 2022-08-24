@@ -44,10 +44,12 @@ resource "random_id" "instance_id" {
 
 // Create a Cloud Storage bucket for ingesting external log data to transfer to BigQuery
 resource "google_storage_bucket" "ingest_bucket" {
-  name     = "log-analysis-ingest-${random_id.instance_id.hex}"
+  name     = "${replace(var.deployment_name,"_","-")}-ingest-${random_id.instance_id.hex}"
   location = var.region
   labels   = var.labels
 }
+
+
 
 // Copy a sample file to the bucket created
 resource "google_storage_bucket_object" "sample_data" {
@@ -114,7 +116,7 @@ module "log_export" {
 module "log_destination" {
   source                   = "terraform-google-modules/log-export/google//modules/bigquery"
   project_id               = var.project_id
-  dataset_name             = "log_analysis_example_logsink"
+  dataset_name             =  "${replace(var.deployment_name,"-","_")}_logsink"
   location = var.region
   log_sink_writer_identity = module.log_export.writer_identity
   labels                   = var.labels
