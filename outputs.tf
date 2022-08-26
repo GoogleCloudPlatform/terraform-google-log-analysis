@@ -29,6 +29,11 @@ output "bigquery_table_name" {
   description = "The BigQuery table name for transferred logs"
 }
 
+output "bigquery_dataset_url" {
+  value       = "https://console.cloud.google.com/bigquery?project=${var.project_id}&ws=!1m4!1m3!3m2!1s${var.project_id}!2s${module.log_destination.resource_name}"
+  description = "The URL to the dataset in the BigQuery UI where you see the tables for logs stored"
+}
+
 output "cloud_run_url" {
   value       = google_cloud_run_service.example_website.status[0].url
   description = "The public URL on which the deployed example website is available"
