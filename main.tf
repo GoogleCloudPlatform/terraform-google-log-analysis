@@ -101,6 +101,8 @@ resource "google_cloud_run_service_iam_policy" "noauth" {
 # Set up Logs Router to route Cloud Run web access logs to BigQuery
 module "log_export" {
   source                 = "terraform-google-modules/log-export/google"
+  version                = "~> 7.4"
+
   destination_uri        = module.log_destination.destination_uri
   filter                 = "log_name=~\".*run.googleapis.com%2Frequests.*\""
   log_sink_name          = "bigquery_example_logsink"
@@ -115,6 +117,8 @@ module "log_export" {
 # Configure a Cloud Logging sink to route logs to BigQuery
 module "log_destination" {
   source                   = "terraform-google-modules/log-export/google//modules/bigquery"
+  version                  = "~> 7.4"
+
   project_id               = var.project_id
   dataset_name             =  "${replace(var.deployment_name,"-","_")}_logsink"
   location = var.region
