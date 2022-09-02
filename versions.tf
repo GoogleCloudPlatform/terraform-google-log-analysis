@@ -19,11 +19,11 @@ terraform {
   required_providers {
     google = {
       source  = "hashicorp/google"
-      version = "~> 4.29.0"
+      version = ">= 4.29, < 5.0"
     }
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/log-analysis/v0.0.1"
+    module_name = "blueprints/terraform/terraform-google-log-analysis/v0.0.1"
   }
 }
