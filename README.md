@@ -41,11 +41,11 @@ Functional examples are included in the
 | Name | Description |
 |------|-------------|
 | bigquery\_dataset\_name | The BigQuery dataset name which the transferred log table is in |
+| bigquery\_dataset\_url | The URL to the dataset in the BigQuery UI where you see the tables for logs stored |
 | bigquery\_table\_name | The BigQuery table name for transferred logs |
 | bucket\_name | The Cloud Storage bucket to ingest logs from external soruces |
 | cloud\_run\_url | The public URL on which the deployed example website is available |
-| datastudio\_report\_url\_1 | The URL to create a new Data Studio report that queries the table for transferred logs |
-| datastudio\_report\_url\_2 | The URL to create a new Data Studio report that queries the table for transferred logs |
+| datastudio\_report\_url | The URL to create a new Data Studio report that runs queries against the table for transferred logs via BigQuery Data Trasfer Service |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
