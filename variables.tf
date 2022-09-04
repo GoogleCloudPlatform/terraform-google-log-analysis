@@ -36,3 +36,9 @@ variable "labels" {
   description = "A set of key/value label pairs to assign to the resources deployed by this blueprint."
   default     = {}
 }
+
+variable "enable_apis" {
+  type        = string
+  description = "Whether or not to enable underlying apis in this solution. ."
+  default     = true
+}

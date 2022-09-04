@@ -32,6 +32,7 @@ Functional examples are included in the
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | deployment\_name | The name used to provision resources with | `string` | `"log-analysis"` | no |
+| enable\_apis | Whether or not to enable underlying apis in this solution. . | `string` | `true` | no |
 | labels | A set of key/value label pairs to assign to the resources deployed by this blueprint. | `map(string)` | `{}` | no |
 | project\_id | The project ID to provision resources to | `string` | n/a | yes |
 | region | The Google Cloud region name to provision resources in | `string` | `"us-central1"` | no |
