@@ -8,6 +8,13 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [0.1.2](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/compare/v0.1.1...v0.1.2) (2022-09-04)
+
+
+### Bug Fixes
+
+* moved Cloud Run to example ([84179a6](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/commit/84179a69b9fa0da061209eba0997c0f692ffd26f))
+
 ## [0.1.1](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/compare/v0.1.0...v0.1.1) (2022-09-02)
 
 
