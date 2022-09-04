@@ -50,8 +50,6 @@ resource "google_storage_bucket" "ingest_bucket" {
   labels   = var.labels
 }
 
-
-
 // Copy a sample file to the bucket created
 resource "google_storage_bucket_object" "sample_data" {
   depends_on = [
@@ -63,40 +61,16 @@ resource "google_storage_bucket_object" "sample_data" {
 }
 
 # Deploy a Cloud Run service to host an example web page 
-resource "google_cloud_run_service" "example_website" {
-  name     = "cloudrun-srv"
-  location = var.region
-  metadata {
-    labels = var.labels
-  }
-  template {
-    spec {
-      containers {
-        image = "us-docker.pkg.dev/cloudrun/container/hello"
-      }
-    }
-  }
-}
+module "cloud_run" {
+  source  = "GoogleCloudPlatform/cloud-run/google"
+  version = "~> 0.3.0"
 
-# Allow public traffic to the example web page hosted by the Cloud Run service
-data "google_iam_policy" "noauth" {
-  binding {
-    role = "roles/run.invoker"
-    members = [
-      "allUsers",
-    ]
-  }
-
-  depends_on = [
-    module.project-services.project_id
-  ]
-}
-
-resource "google_cloud_run_service_iam_policy" "noauth" {
-  location    = google_cloud_run_service.example_website.location
-  project     = google_cloud_run_service.example_website.project
-  service     = google_cloud_run_service.example_website.name
-  policy_data = data.google_iam_policy.noauth.policy_data
+  service_name           = "cloudrun-srv"
+  project_id             = var.project_id
+  location               = var.region
+  service_labels         = var.labels
+  image                  = "gcr.io/cloudrun/hello"
+  members                = ["allUsers"]
 }
 
 # Set up Logs Router to route Cloud Run web access logs to BigQuery

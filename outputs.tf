@@ -35,7 +35,7 @@ output "bigquery_dataset_url" {
 }
 
 output "cloud_run_url" {
-  value       = google_cloud_run_service.example_website.status[0].url
+  value       = module.cloud_run.service_url
   description = "The public URL on which the deployed example website is available"
 }
 
