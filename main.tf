@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-provider "google" {
-  project = var.project_id
+data "google_project" "project" {
+  project_id = var.project_id
 }
 
 // Enable APIs required
@@ -89,9 +89,6 @@ module "log_destination" {
 }
 
 # Create a Service Account for Bigquery Data Transfer jobs
-data "google_project" "project" {
-}
-
 resource "google_service_account" "bigquery_data_transfer_service" {
   depends_on = [
     module.project-services.project_id
