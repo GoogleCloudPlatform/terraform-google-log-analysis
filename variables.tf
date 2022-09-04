@@ -15,18 +15,18 @@
  */
 
 variable "project_id" {
-  description = "The project ID to provision resources to"
+  description = "The project ID to provision resources to."
   type        = string
 }
 
 variable "region" {
-  description = "The Google Cloud region name to provision resources in"
+  description = "The Google Cloud region name to provision resources in."
   type        = string
   default     = "us-central1"
 }
 
 variable "deployment_name" {
-  description = "The name used to provision resources with"
+  description = "The name used to provision resources with."
   type        = string
   default     = "log-analysis"
 }
@@ -39,6 +39,6 @@ variable "labels" {
 
 variable "enable_apis" {
   type        = string
-  description = "Whether or not to enable underlying apis in this solution. ."
+  description = "Whether or not to enable underlying apis in this solution."
   default     = true
 }

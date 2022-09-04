@@ -19,3 +19,22 @@ variable "project_id" {
   type        = string
 }
 
+variable "region" {
+  description = "The Google Cloud region name to provision resources in"
+  type        = string
+  default     = "us-central1"
+}
+
+variable "deployment_name" {
+  description = "The name used to provision resources with."
+  type        = string
+  default     = "log-analysis"
+}
+
+variable "labels" {
+  type        = map(string)
+  description = "A set of key/value label pairs to assign to the resources deployed by this blueprint."
+  default     = {}
+}
+
+

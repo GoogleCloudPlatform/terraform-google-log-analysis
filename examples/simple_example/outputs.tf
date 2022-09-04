@@ -15,21 +15,31 @@
  */
 
 output "bucket_name" {
-  value       = google_storage_bucket.ingest_bucket.name
+  value       = module.log_analysis.bucket_name
   description = "The Cloud Storage bucket to ingest logs from external soruces"
 }
 
 output "bigquery_dataset_name" {
-  value       = module.log_destination.resource_name
+  value       = module.log_analysis.bigquery_dataset_name
   description = "The BigQuery dataset name which the transferred log table is in"
 }
 
 output "bigquery_table_name" {
-  value       = google_bigquery_table.bigquery_data_transfer_destination.table_id
+  value       = module.log_analysis.bigquery_table_name
   description = "The BigQuery table name for transferred logs"
 }
 
+output "bigquery_dataset_url" {
+  value       = module.log_analysis.bigquery_dataset_url
+  description = "The URL to the dataset in the BigQuery UI where you see the tables for logs stored"
+}
+
+output "datastudio_report_url" {
+  value       = module.log_analysis.datastudio_report_url
+  description = "The URL to create a new Data Studio report that runs queries against the table for transferred logs via BigQuery Data Trasfer Service"
+}
+
 output "cloud_run_url" {
-  value       = google_cloud_run_service.example_website.status[0].url
+  value       = module.cloud_run.service_url
   description = "The public URL on which the deployed example website is available"
 }

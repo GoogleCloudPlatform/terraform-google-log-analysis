@@ -34,11 +34,6 @@ output "bigquery_dataset_url" {
   description = "The URL to the dataset in the BigQuery UI where you see the tables for logs stored"
 }
 
-output "cloud_run_url" {
-  value       = module.cloud_run.service_url
-  description = "The public URL on which the deployed example website is available"
-}
-
 output "datastudio_report_url" {
   value       = "https://datastudio.google.com/reporting/create?c.mode=edit&ds.connector=BIG_QUERY&ds.type=TABLE&ds.projectId=${var.project_id}&ds.datasetId=${module.log_destination.resource_name}&ds.tableId=${google_bigquery_table.bigquery_data_transfer_destination.table_id}"
   description = "The URL to create a new Data Studio report that runs queries against the table for transferred logs via BigQuery Data Trasfer Service"

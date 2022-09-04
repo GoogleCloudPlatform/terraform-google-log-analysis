@@ -56,21 +56,8 @@ resource "google_storage_bucket_object" "sample_data" {
     google_storage_bucket.ingest_bucket
   ]
   name   = "sample_access_log.json"
-  source = "./sample_access_log.json"
+  source = "${path.module}/sample_access_log.json"
   bucket = resource.google_storage_bucket.ingest_bucket.name
-}
-
-# Deploy a Cloud Run service to host an example web page 
-module "cloud_run" {
-  source  = "GoogleCloudPlatform/cloud-run/google"
-  version = "~> 0.3.0"
-
-  service_name           = "cloudrun-srv"
-  project_id             = var.project_id
-  location               = var.region
-  service_labels         = var.labels
-  image                  = "gcr.io/cloudrun/hello"
-  members                = ["allUsers"]
 }
 
 # Set up Logs Router to route Cloud Run web access logs to BigQuery
@@ -143,7 +130,7 @@ resource "google_bigquery_table" "bigquery_data_transfer_destination" {
   dataset_id = module.log_destination.resource_name
   table_id   = "transferred_logs"
   labels     = var.labels
-  schema     = file("./sample_access_log_schema.json")
+  schema     = file("${path.module}/sample_access_log_schema.json")
 }
 
 # Create a BigQuery Data Transfer Service job to ingest data on Cloud Storage to Biguquery
