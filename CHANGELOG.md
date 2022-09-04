@@ -8,6 +8,13 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [0.1.1](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/compare/v0.1.0...v0.1.1) (2022-09-02)
+
+
+### Bug Fixes
+
+* data studio url output ([3300e14](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/commit/3300e14bfbbeb5eaef9cb3610847db16b1d45b59))
+
 ## 0.1.0 (2022-09-02)
 
 
