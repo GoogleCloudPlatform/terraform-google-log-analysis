@@ -17,10 +17,10 @@
 module "log_analysis" {
   source = "../.."
 
-  project_id = var.project_id
-  region = var.region
+  project_id      = var.project_id
+  region          = var.region
   deployment_name = var.deployment_name
-  labels = var.labels
+  labels          = var.labels
 }
 
 # Deploy a Cloud Run service to host an example web page 
@@ -28,11 +28,10 @@ module "cloud_run" {
   source  = "GoogleCloudPlatform/cloud-run/google"
   version = "~> 0.3.0"
 
-  service_name           = "cloudrun-srv"
-  project_id             = var.project_id
-  location               = var.region
-  service_labels         = var.labels
-  image                  = "gcr.io/cloudrun/hello"
-  members                = ["allUsers"]
+  service_name   = "cloudrun-srv"
+  project_id     = var.project_id
+  location       = var.region
+  service_labels = var.labels
+  image          = "gcr.io/cloudrun/hello"
+  members        = ["allUsers"]
 }
-

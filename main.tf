@@ -14,15 +14,11 @@
  * limitations under the License.
  */
 
-data "google_project" "project" {
-  project_id = var.project_id
-}
-
 // Enable APIs required
 module "project-services" {
-  source     = "terraform-google-modules/project-factory/google//modules/project_services"
-  version    = "~> 12.0"
-  project_id = var.project_id
+  source      = "terraform-google-modules/project-factory/google//modules/project_services"
+  version     = "~> 12.0"
+  project_id  = var.project_id
   enable_apis = var.enable_apis
   activate_apis = [
     "iam.googleapis.com",
@@ -45,7 +41,7 @@ resource "random_id" "instance_id" {
 
 // Create a Cloud Storage bucket for ingesting external log data to transfer to BigQuery
 resource "google_storage_bucket" "ingest_bucket" {
-  name     = "${replace(var.deployment_name,"_","-")}-ingest-${random_id.instance_id.hex}"
+  name     = "${replace(var.deployment_name, "_", "-")}-ingest-${random_id.instance_id.hex}"
   location = var.region
   labels   = var.labels
 }
@@ -62,8 +58,8 @@ resource "google_storage_bucket_object" "sample_data" {
 
 # Set up Logs Router to route Cloud Run web access logs to BigQuery
 module "log_export" {
-  source                 = "terraform-google-modules/log-export/google"
-  version                = "~> 7.4"
+  source  = "terraform-google-modules/log-export/google"
+  version = "~> 7.4"
 
   destination_uri        = module.log_destination.destination_uri
   filter                 = "log_name=~\".*run.googleapis.com%2Frequests.*\""
@@ -78,12 +74,12 @@ module "log_export" {
 
 # Configure a Cloud Logging sink to route logs to BigQuery
 module "log_destination" {
-  source                   = "terraform-google-modules/log-export/google//modules/bigquery"
-  version                  = "~> 7.4"
+  source  = "terraform-google-modules/log-export/google//modules/bigquery"
+  version = "~> 7.4"
 
   project_id               = var.project_id
-  dataset_name             =  "${replace(var.deployment_name,"-","_")}_logsink"
-  location = var.region
+  dataset_name             = "${replace(var.deployment_name, "-", "_")}_logsink"
+  location                 = var.region
   log_sink_writer_identity = module.log_export.writer_identity
   labels                   = var.labels
 }
@@ -99,25 +95,28 @@ resource "google_service_account" "bigquery_data_transfer_service" {
 }
 
 resource "google_project_iam_member" "bigquery_data_editor" {
-  project = data.google_project.project.project_id
+  project = var.project_id
   role    = "roles/bigquery.dataEditor"
   member  = "serviceAccount:${google_service_account.bigquery_data_transfer_service.email}"
 }
 
 resource "google_project_iam_member" "storage_object_viewer" {
-  project = data.google_project.project.project_id
+  project = var.project_id
   role    = "roles/storage.objectViewer"
   member  = "serviceAccount:${google_service_account.bigquery_data_transfer_service.email}"
 }
 
-# Set the IAM Permisions
-resource "google_project_iam_member" "bigquery_data_transfer_service_permissions" {
-  depends_on = [
-    module.project-services.project_id
-  ]
-  project = data.google_project.project.project_id
+# Add the Service Account Short Term Token Minter role to a Google-managed service account used by the BigQuery Data Transfer Service
+resource "google_project_service_identity" "bigquery_data_transfer_sa" {
+  provider = google-beta
+  project  = var.project_id
+  service  = "bigquerydatatransfer.googleapis.com"
+}
+
+resource "google_project_iam_member" "bigquery_data_transfer_sa_serviceAccountShortTermTokenMinter" {
+  project = var.project_id
   role    = "roles/iam.serviceAccountShortTermTokenMinter"
-  member  = "serviceAccount:service-${data.google_project.project.number}@gcp-sa-bigquerydatatransfer.iam.gserviceaccount.com"
+  member  = "serviceAccount:${google_project_service_identity.bigquery_data_transfer_sa.email}"
 }
 
 resource "google_bigquery_table" "bigquery_data_transfer_destination" {
@@ -137,7 +136,7 @@ resource "google_bigquery_data_transfer_config" "log_transfer" {
     google_bigquery_table.bigquery_data_transfer_destination
   ]
   display_name           = "Log ingestion from GCS to BQ"
-  location = var.region
+  location               = var.region
   data_source_id         = "google_cloud_storage"
   schedule               = "every day 00:00"
   destination_dataset_id = module.log_destination.resource_name
