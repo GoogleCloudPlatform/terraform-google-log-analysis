@@ -42,6 +42,7 @@ resource "random_id" "instance_id" {
 // Create a Cloud Storage bucket for ingesting external log data to transfer to BigQuery
 resource "google_storage_bucket" "ingest_bucket" {
   name     = "${replace(var.deployment_name, "_", "-")}-ingest-${random_id.instance_id.hex}"
+  project  = var.project_id
   location = var.region
   labels   = var.labels
 }
@@ -89,6 +90,7 @@ resource "google_service_account" "bigquery_data_transfer_service" {
   depends_on = [
     module.project-services.project_id
   ]
+  project      = var.project_id
   account_id   = "bigquery-data-transfer-service"
   display_name = "Service Account for BigQuery Data Transfer Service"
   description  = "Used to run BigQuery Data Transfer jobs."
@@ -123,6 +125,7 @@ resource "google_bigquery_table" "bigquery_data_transfer_destination" {
   depends_on = [
     module.log_destination.resource_name
   ]
+  project    = var.project_id
   dataset_id = module.log_destination.resource_name
   table_id   = "transferred_logs"
   labels     = var.labels
