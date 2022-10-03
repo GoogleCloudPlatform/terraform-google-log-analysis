@@ -138,6 +138,7 @@ resource "google_bigquery_data_transfer_config" "log_transfer" {
     module.log_destination.resource_name,
     google_bigquery_table.bigquery_data_transfer_destination
   ]
+  project                = var.project_id
   display_name           = "Log ingestion from GCS to BQ"
   location               = var.region
   data_source_id         = "google_cloud_storage"
