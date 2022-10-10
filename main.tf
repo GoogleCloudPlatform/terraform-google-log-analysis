@@ -78,11 +78,12 @@ module "log_destination" {
   source  = "terraform-google-modules/log-export/google//modules/bigquery"
   version = "~> 7.4"
 
-  project_id               = var.project_id
-  dataset_name             = "${replace(var.deployment_name, "-", "_")}_logsink"
-  location                 = var.region
-  log_sink_writer_identity = module.log_export.writer_identity
-  labels                   = var.labels
+  project_id                 = var.project_id
+  dataset_name               = "${replace(var.deployment_name, "-", "_")}_logsink"
+  location                   = var.region
+  log_sink_writer_identity   = module.log_export.writer_identity
+  labels                     = var.labels
+  delete_contents_on_destroy = var.delete_contents_on_destroy
 }
 
 # Create a Service Account for Bigquery Data Transfer jobs
@@ -132,11 +133,12 @@ resource "google_bigquery_table" "bigquery_data_transfer_destination" {
   depends_on = [
     module.log_destination.resource_name
   ]
-  project    = var.project_id
-  dataset_id = module.log_destination.resource_name
-  table_id   = "transferred_logs"
-  labels     = var.labels
-  schema     = file("${path.module}/sample_access_log_schema.json")
+  project             = var.project_id
+  dataset_id          = module.log_destination.resource_name
+  table_id            = "transferred_logs"
+  labels              = var.labels
+  schema              = file("${path.module}/sample_access_log_schema.json")
+  deletion_protection = !var.delete_contents_on_destroy
 }
 
 # Create a BigQuery Data Transfer Service job to ingest data on Cloud Storage to Biguquery
