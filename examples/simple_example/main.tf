@@ -15,7 +15,8 @@
  */
 
 module "log_analysis" {
-  source = "../.."
+  source  = "GoogleCloudPlatform/log-analysis/google"
+  version = "~> 0.1"
 
   project_id      = var.project_id
   region          = var.region
@@ -23,7 +24,7 @@ module "log_analysis" {
   labels          = var.labels
 }
 
-# Deploy a Cloud Run service to host an example web page 
+# Deploy a Cloud Run service to host an example web page
 module "cloud_run" {
   source  = "GoogleCloudPlatform/cloud-run/google"
   version = "~> 0.3.0"
