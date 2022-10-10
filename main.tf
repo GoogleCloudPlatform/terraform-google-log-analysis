@@ -115,9 +115,16 @@ resource "google_project_service_identity" "bigquery_data_transfer_sa" {
   service  = "bigquerydatatransfer.googleapis.com"
 }
 
-resource "google_project_iam_member" "bigquery_data_transfer_sa_serviceAccountShortTermTokenMinter" {
+resource "google_service_account_iam_member" "bigquery_data_transfer_sa_serviceAccountShortTermTokenMinter" {
+  service_account_id = google_service_account.bigquery_data_transfer_service.name
+  role               = "roles/iam.serviceAccountShortTermTokenMinter"
+  member             = "serviceAccount:${google_project_service_identity.bigquery_data_transfer_sa.email}"
+}
+
+# https://cloud.google.com/bigquery/docs/enable-transfer-service#manual_service_agent_creation
+resource "google_project_iam_member" "bigquery_data_transfer_sa_agent" {
   project = var.project_id
-  role    = "roles/iam.serviceAccountShortTermTokenMinter"
+  role    = "roles/bigquerydatatransfer.serviceAgent"
   member  = "serviceAccount:${google_project_service_identity.bigquery_data_transfer_sa.email}"
 }
 
