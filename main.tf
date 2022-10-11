@@ -78,11 +78,12 @@ module "log_destination" {
   source  = "terraform-google-modules/log-export/google//modules/bigquery"
   version = "~> 7.4"
 
-  project_id               = var.project_id
-  dataset_name             = "${replace(var.deployment_name, "-", "_")}_logsink"
-  location                 = var.region
-  log_sink_writer_identity = module.log_export.writer_identity
-  labels                   = var.labels
+  project_id                 = var.project_id
+  dataset_name               = "${replace(var.deployment_name, "-", "_")}_logsink"
+  location                   = var.region
+  log_sink_writer_identity   = module.log_export.writer_identity
+  labels                     = var.labels
+  delete_contents_on_destroy = var.delete_contents_on_destroy
 }
 
 # Create a Service Account for Bigquery Data Transfer jobs
@@ -115,9 +116,16 @@ resource "google_project_service_identity" "bigquery_data_transfer_sa" {
   service  = "bigquerydatatransfer.googleapis.com"
 }
 
-resource "google_project_iam_member" "bigquery_data_transfer_sa_serviceAccountShortTermTokenMinter" {
+resource "google_service_account_iam_member" "bigquery_data_transfer_sa_serviceAccountShortTermTokenMinter" {
+  service_account_id = google_service_account.bigquery_data_transfer_service.name
+  role               = "roles/iam.serviceAccountShortTermTokenMinter"
+  member             = "serviceAccount:${google_project_service_identity.bigquery_data_transfer_sa.email}"
+}
+
+# https://cloud.google.com/bigquery/docs/enable-transfer-service#manual_service_agent_creation
+resource "google_project_iam_member" "bigquery_data_transfer_sa_agent" {
   project = var.project_id
-  role    = "roles/iam.serviceAccountShortTermTokenMinter"
+  role    = "roles/bigquerydatatransfer.serviceAgent"
   member  = "serviceAccount:${google_project_service_identity.bigquery_data_transfer_sa.email}"
 }
 
@@ -125,11 +133,12 @@ resource "google_bigquery_table" "bigquery_data_transfer_destination" {
   depends_on = [
     module.log_destination.resource_name
   ]
-  project    = var.project_id
-  dataset_id = module.log_destination.resource_name
-  table_id   = "transferred_logs"
-  labels     = var.labels
-  schema     = file("${path.module}/sample_access_log_schema.json")
+  project             = var.project_id
+  dataset_id          = module.log_destination.resource_name
+  table_id            = "transferred_logs"
+  labels              = var.labels
+  schema              = file("${path.module}/sample_access_log_schema.json")
+  deletion_protection = !var.delete_contents_on_destroy
 }
 
 # Create a BigQuery Data Transfer Service job to ingest data on Cloud Storage to Biguquery

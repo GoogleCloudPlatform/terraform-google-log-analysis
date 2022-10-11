@@ -22,3 +22,7 @@ output "sa_key" {
   value     = google_service_account_key.int_test.private_key
   sensitive = true
 }
+
+output "delete_contents_on_destroy" {
+  value = true
+}
