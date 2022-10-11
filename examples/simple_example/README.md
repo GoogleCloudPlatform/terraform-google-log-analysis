@@ -7,6 +7,7 @@ This example illustrates how to use the `log-analysis` module.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| delete\_contents\_on\_destroy | If set to true, delete all the tables in the dataset. | `bool` | `false` | no |
 | deployment\_name | The name used to provision resources with. | `string` | `"log-analysis"` | no |
 | labels | A set of key/value label pairs to assign to the resources deployed by this blueprint. | `map(string)` | `{}` | no |
 | project\_id | The ID of the project in which to provision resources. | `string` | n/a | yes |
