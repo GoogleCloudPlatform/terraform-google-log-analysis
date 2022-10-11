@@ -10,6 +10,9 @@ This changelog is generated automatically based on [Conventional Commits](https:
 
 ## [0.1.3](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/compare/v0.1.2...v0.1.3) (2022-10-11)
 
+### Features
+
+* add support for destroy and fix roles ([#22](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/issues/22))
 
 ### Bug Fixes
 
