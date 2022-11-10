@@ -14,6 +14,11 @@
  * limitations under the License.
  */
 
+output "deployment_id" {
+  value       = random_id.deployment_id.hex
+  description = "The random ID generated for each deployment"
+}
+
 output "bucket_name" {
   value       = google_storage_bucket.ingest_bucket.name
   description = "The Cloud Storage bucket to ingest logs from external soruces"
@@ -38,4 +43,3 @@ output "datastudio_report_url" {
   value       = "https://datastudio.google.com/reporting/create?c.mode=edit&ds.connector=BIG_QUERY&ds.type=TABLE&ds.projectId=${var.project_id}&ds.datasetId=${module.log_destination.resource_name}&ds.tableId=${google_bigquery_table.bigquery_data_transfer_destination.table_id}"
   description = "The URL to create a new Data Studio report that runs queries against the table for transferred logs via BigQuery Data Trasfer Service"
 }
-
