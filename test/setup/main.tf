@@ -18,15 +18,23 @@ module "project" {
   source  = "terraform-google-modules/project-factory/google"
   version = "~> 11.0"
 
-  name              = "ci-log-analysis"
-  random_project_id = "true"
-  org_id            = var.org_id
-  folder_id         = var.folder_id
-  billing_account   = var.billing_account
+  name                    = "ci-log-analysis"
+  random_project_id       = "true"
+  org_id                  = var.org_id
+  folder_id               = var.folder_id
+  billing_account         = var.billing_account
+  default_service_account = "keep"
 
   activate_apis = [
     "cloudresourcemanager.googleapis.com",
+    "iam.googleapis.com",
     "storage-api.googleapis.com",
-    "serviceusage.googleapis.com"
+    "storage.googleapis.com",
+    "serviceusage.googleapis.com",
+    "compute.googleapis.com",
+    "logging.googleapis.com",
+    "run.googleapis.com",
+    "bigquery.googleapis.com",
+    "bigquerydatatransfer.googleapis.com"
   ]
 }

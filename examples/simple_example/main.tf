@@ -15,15 +15,17 @@
  */
 
 module "log_analysis" {
-  source = "../.."
+  source  = "GoogleCloudPlatform/log-analysis/google"
+  version = "~> 0.1"
 
-  project_id      = var.project_id
-  region          = var.region
-  deployment_name = var.deployment_name
-  labels          = var.labels
+  project_id                 = var.project_id
+  region                     = var.region
+  deployment_name            = var.deployment_name
+  labels                     = var.labels
+  delete_contents_on_destroy = var.delete_contents_on_destroy
 }
 
-# Deploy a Cloud Run service to host an example web page 
+# Deploy a Cloud Run service to host an example web page
 module "cloud_run" {
   source  = "GoogleCloudPlatform/cloud-run/google"
   version = "~> 0.3.0"

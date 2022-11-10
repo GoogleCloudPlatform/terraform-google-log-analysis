@@ -16,7 +16,7 @@ Basic usage of this module is as follows:
 
 ```hcl
 module "log_analysis" {
-  source  = "terraform-google-modules/log-analysis/google"
+  source  = "GoogleCloudPlatform/log-analysis/google"
   version = "~> 0.1"
 
   project_id  = "<PROJECT ID>"
@@ -31,6 +31,7 @@ Functional examples are included in the
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| delete\_contents\_on\_destroy | If set to true, delete all BQ resources. | `bool` | `false` | no |
 | deployment\_name | The name used to provision resources with. | `string` | `"log-analysis"` | no |
 | enable\_apis | Whether or not to enable underlying apis in this solution. | `string` | `true` | no |
 | labels | A set of key/value label pairs to assign to the resources deployed by this blueprint. | `map(string)` | `{}` | no |
