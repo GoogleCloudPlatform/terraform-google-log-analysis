@@ -8,6 +8,16 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [0.1.3](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/compare/v0.1.2...v0.1.3) (2022-10-11)
+
+### Features
+
+* add support for destroy and fix roles ([#22](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/issues/22))
+
+### Bug Fixes
+
+* update doc to point to correct upstream ([#23](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/issues/23)) ([145ca13](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/commit/145ca1368f5e3a0dd9fd7d766d49364a67c54cb5))
+
 ## [0.1.2](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/compare/v0.1.1...v0.1.2) (2022-09-04)
 
 

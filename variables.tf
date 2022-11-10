@@ -42,3 +42,9 @@ variable "enable_apis" {
   description = "Whether or not to enable underlying apis in this solution."
   default     = true
 }
+
+variable "delete_contents_on_destroy" {
+  type        = bool
+  description = "If set to true, delete all BQ resources."
+  default     = false
+}

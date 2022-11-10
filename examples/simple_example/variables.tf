@@ -37,4 +37,8 @@ variable "labels" {
   default     = {}
 }
 
-
+variable "delete_contents_on_destroy" {
+  type        = bool
+  description = "If set to true, delete all the tables in the dataset."
+  default     = false
+}
