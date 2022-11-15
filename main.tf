@@ -35,13 +35,13 @@ module "project-services" {
 }
 
 // Terraform plugin for creating random IDs
-resource "random_id" "instance_id" {
-  byte_length = 8
+resource "random_id" "deployment_id" {
+  byte_length = 4
 }
 
 // Create a Cloud Storage bucket for ingesting external log data to transfer to BigQuery
 resource "google_storage_bucket" "ingest_bucket" {
-  name     = "${replace(var.deployment_name, "_", "-")}-ingest-${random_id.instance_id.hex}"
+  name     = "${replace(var.deployment_name, "_", "-")}-ingest-${random_id.deployment_id.hex}"
   project  = var.project_id
   location = var.region
   labels   = var.labels
@@ -64,7 +64,7 @@ module "log_export" {
 
   destination_uri        = module.log_destination.destination_uri
   filter                 = "log_name=~\".*run.googleapis.com%2Frequests.*\""
-  log_sink_name          = "bigquery_example_logsink"
+  log_sink_name          = "bigquery_example_logsink_${random_id.deployment_id.hex}"
   parent_resource_id     = var.project_id
   parent_resource_type   = "project"
   unique_writer_identity = true
@@ -92,7 +92,7 @@ resource "google_service_account" "bigquery_data_transfer_service" {
     module.project-services.project_id
   ]
   project      = var.project_id
-  account_id   = "bigquery-data-transfer-service"
+  account_id   = "bq-data-transfer-${random_id.deployment_id.hex}"
   display_name = "Service Account for BigQuery Data Transfer Service"
   description  = "Used to run BigQuery Data Transfer jobs."
 }

@@ -47,6 +47,7 @@ Functional examples are included in the
 | bigquery\_table\_name | The BigQuery table name for transferred logs |
 | bucket\_name | The Cloud Storage bucket to ingest logs from external soruces |
 | datastudio\_report\_url | The URL to create a new Data Studio report that runs queries against the table for transferred logs via BigQuery Data Trasfer Service |
+| deployment\_id | The random ID generated for each deployment |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 

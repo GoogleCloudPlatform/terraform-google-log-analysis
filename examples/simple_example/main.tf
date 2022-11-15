@@ -30,7 +30,7 @@ module "cloud_run" {
   source  = "GoogleCloudPlatform/cloud-run/google"
   version = "~> 0.3.0"
 
-  service_name   = "cloudrun-srv"
+  service_name   = "cloudrun-srv-${module.log_analysis.deployment_id}"
   project_id     = var.project_id
   location       = var.region
   service_labels = var.labels
