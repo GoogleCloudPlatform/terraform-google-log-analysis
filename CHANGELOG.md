@@ -8,6 +8,13 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [0.1.4](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/compare/v0.1.3...v0.1.4) (2022-11-17)
+
+
+### Bug Fixes
+
+* Error when deploying multiple times in same project [#25](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/issues/25) ([#26](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/issues/26)) ([ac70578](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/commit/ac70578f23e870feddfecb83709c6e65bd50a3c5))
+
 ## [0.1.3](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/compare/v0.1.2...v0.1.3) (2022-10-11)
 
 ### Features

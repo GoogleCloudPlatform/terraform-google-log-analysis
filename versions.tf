@@ -32,6 +32,6 @@ terraform {
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-log-analysis/v0.1.3"
+    module_name = "blueprints/terraform/terraform-google-log-analysis/v0.1.4"
   }
 }
