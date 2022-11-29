@@ -8,6 +8,13 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [0.1.5](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/compare/v0.1.4...v0.1.5) (2022-11-28)
+
+
+### Bug Fixes
+
+* simple_example fails to deploy: "Unsupported attrbitute" [#29](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/issues/29) ([4a57d0a](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/commit/4a57d0afef4fd2a86517684b7d485685a7525644))
+
 ## [0.1.4](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/compare/v0.1.3...v0.1.4) (2022-11-17)
 
 
