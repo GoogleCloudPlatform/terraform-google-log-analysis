@@ -1,0 +1,90 @@
+# Copyright 2022 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+apiVersion: blueprints.cloud.google.com/v1alpha1
+kind: BlueprintMetadata
+metadata:
+  name: terraform-google-log-analysis
+  annotations:
+    config.kubernetes.io/local-config: "true"
+spec:
+  title: terraform-google-log-analysis
+  source:
+    repo: https://github.com/GoogleCloudPlatform/terraform-google-log-analysis.git
+    sourceType: git
+  version: 0.1.5
+  actuationTool:
+    type: Terraform
+    version: '>= 0.13'
+  examples:
+  - name: simple_example
+    location: examples/simple_example
+  variables:
+  - name: delete_contents_on_destroy
+    description: If set to true, delete all BQ resources.
+    type: bool
+    default: false
+    required: false
+  - name: deployment_name
+    description: The name used to provision resources with.
+    type: string
+    default: log-analysis
+    required: false
+  - name: enable_apis
+    description: Whether or not to enable underlying apis in this solution.
+    type: string
+    default: true
+    required: false
+  - name: labels
+    description: A set of key/value label pairs to assign to the resources deployed by this blueprint.
+    type: map(string)
+    default: {}
+    required: false
+  - name: project_id
+    description: The project ID to provision resources to.
+    type: string
+    required: true
+  - name: region
+    description: The Google Cloud region name to provision resources in.
+    type: string
+    default: us-central1
+    required: false
+  outputs:
+  - name: bigquery_dataset_name
+    description: The BigQuery dataset name which the transferred log table is in
+  - name: bigquery_dataset_url
+    description: The URL to the dataset in the BigQuery UI where you see the tables for logs stored
+  - name: bigquery_table_name
+    description: The BigQuery table name for transferred logs
+  - name: bucket_name
+    description: The Cloud Storage bucket to ingest logs from external soruces
+  - name: datastudio_report_url
+    description: The URL to create a new Data Studio report that runs queries against the table for transferred logs via BigQuery Data Trasfer Service
+  - name: deployment_id
+    description: The random ID generated for each deployment
+  roles:
+  - level: Project
+    roles:
+    - roles/owner
+  services:
+  - cloudresourcemanager.googleapis.com
+  - iam.googleapis.com
+  - storage-api.googleapis.com
+  - storage.googleapis.com
+  - serviceusage.googleapis.com
+  - compute.googleapis.com
+  - logging.googleapis.com
+  - run.googleapis.com
+  - bigquery.googleapis.com
+  - bigquerydatatransfer.googleapis.com
