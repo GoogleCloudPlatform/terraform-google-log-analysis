@@ -14,6 +14,18 @@
  * limitations under the License.
  */
 
+terraform {
+  required_providers {
+    google = {
+      source = "hashicorp/google"
+      /*
+        Pinning this version due to an upstream provider issue: [link]
+      */
+      version = "4.45.0"
+    }
+  }
+}
+
 module "log_analysis" {
   source  = "GoogleCloudPlatform/log-analysis/google"
   version = "~> 0.1.4"
