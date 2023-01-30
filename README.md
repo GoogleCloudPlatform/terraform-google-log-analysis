@@ -1,6 +1,4 @@
-# terraform-google-log-analysis
-
-This module was generated from [terraform-google-module-template](https://github.com/terraform-google-modules/terraform-google-module-template/), which by default generates a module that simply creates a GCS bucket. As the module develops, this README should be updated.
+# Log analysis pipeline
 
 The resources/services/activations/deletions that this module will create/trigger are:
 
@@ -9,6 +7,23 @@ The resources/services/activations/deletions that this module will create/trigge
 - Create a table in BigQuery to store logs
 - Set up Logs Router to route Cloud Run web access logs to BigQuery
 - Set up a BigQuery Data Transfer Service to transfer external logs in the Cloud Storage bucket to the BigQuery table
+
+### Tagline
+Create a pipeline to analyze logs across environments.
+
+### Detailed
+Create a pipeline to analyze various data and logs of applications running across different environments like Google Cloud, other clouds and on-premises
+You can choose whether to deploy your solution through the console directly or download as Terraform on GitHub to deploy later.
+
+### Architecture
+1- A web server deployed on Cloud Run generates web access logs when a user visits a sample website deployed on it. The web access logs are automatically sent to Logging.
+2- Logging then routes the logs to a designated table in BigQuery per sink configured.
+3- Files that contain application logs can be uploaded into a bucket in Cloud Storage. (This solution deploys a text file that contains a sample web access log in JSON format.)
+4- BigQuery Data Transfer Service then periodically loads the file to a designated table in BigQuery per transfer configured.
+5- You can run queries against the logs in the table or use Data Studio to visualize the logs.
+
+## Documentation
+- [Architecture Diagram](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/blob/main/assets/log_analysis_pipeline_v1.svg)
 
 ## Usage
 
