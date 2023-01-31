@@ -16,11 +16,11 @@ Create a pipeline to analyze various data and logs of applications running acros
 You can choose whether to deploy your solution through the console directly or download as Terraform on GitHub to deploy later.
 
 ### Architecture
-1- A web server deployed on Cloud Run generates web access logs when a user visits a sample website deployed on it. The web access logs are automatically sent to Logging.
-2- Logging then routes the logs to a designated table in BigQuery per sink configured.
-3- Files that contain application logs can be uploaded into a bucket in Cloud Storage. (This solution deploys a text file that contains a sample web access log in JSON format.)
-4- BigQuery Data Transfer Service then periodically loads the file to a designated table in BigQuery per transfer configured.
-5- You can run queries against the logs in the table or use Data Studio to visualize the logs.
+1. A web server deployed on Cloud Run generates web access logs when a user visits a sample website deployed on it. The web access logs are automatically sent to Logging.
+1. Logging then routes the logs to a designated table in BigQuery per sink configured.
+1. Files that contain application logs can be uploaded into a bucket in Cloud Storage. (This solution deploys a text file that contains a sample web access log in JSON format.)
+1. BigQuery Data Transfer Service then periodically loads the file to a designated table in BigQuery per transfer configured.
+1. You can run queries against the logs in the table or use Data Studio to visualize the logs.
 
 ## Documentation
 - [Architecture Diagram](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/blob/main/assets/log_analysis_pipeline_v1.svg)
