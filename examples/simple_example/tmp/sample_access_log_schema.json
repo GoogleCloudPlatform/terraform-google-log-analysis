@@ -1,0 +1,39 @@
+[
+    {
+		"name": "host",
+		"type": "STRING"
+	},
+    {
+		"name": "user_identifier",
+		"type": "STRING"
+	},
+    {
+		"name": "datetime",
+		"type": "TIMESTAMP"
+	},
+    {
+		"name": "method",
+		"type": "STRING"
+	},
+    {
+		"name": "request",
+		"type": "STRING"
+	},
+    {
+		"name": "protocol",
+		"type": "STRING"
+	},
+    {
+		"name": "status",
+		"type": "INTEGER"
+	},
+	{
+		"name": "bytes",
+		"type": "INTEGER"
+	},
+	{
+		"name": "referer",
+		"type": "STRING"
+	}
+
+]

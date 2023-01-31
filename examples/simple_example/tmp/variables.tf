@@ -15,12 +15,12 @@
  */
 
 variable "project_id" {
-  description = "The ID of the project in which to provision resources."
+  description = "The project ID to provision resources to."
   type        = string
 }
 
 variable "region" {
-  description = "The Google Cloud region name to provision resources in"
+  description = "The Google Cloud region name to provision resources in."
   type        = string
   default     = "us-central1"
 }
@@ -37,9 +37,15 @@ variable "labels" {
   default     = {}
 }
 
+variable "enable_apis" {
+  type        = string
+  description = "Whether or not to enable underlying apis in this solution."
+  default     = true
+}
+
 variable "delete_contents_on_destroy" {
   type        = bool
-  description = "If set to true, delete all the tables in the dataset."
+  description = "If set to true, delete all BQ resources."
   default     = false
 }
 
