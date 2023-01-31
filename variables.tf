@@ -48,3 +48,14 @@ variable "delete_contents_on_destroy" {
   description = "If set to true, delete all BQ resources."
   default     = false
 }
+
+variable "service_account_email" {
+  type        = string
+  description = <<EOF
+  Service account to be used in Bigquery Data Transfer jobs. If set,
+  bigquery.dataEditor,storage.objectViewer roles should be granted to this SA. Additionally,
+  service-project_number@gcp-sa-bigquerydatatransfer.iam.gserviceaccount.com service agent
+  should also be granted iam.serviceAccountShortTermTokenMinter on this SA.
+  EOF
+  default     = ""
+}

@@ -23,6 +23,13 @@ module "log_analysis" {
   deployment_name            = var.deployment_name
   labels                     = var.labels
   delete_contents_on_destroy = var.delete_contents_on_destroy
+  service_account_email      = var.service_account_email
+}
+
+resource "google_service_account" "cloudrun_sa" {
+  project      = var.project_id
+  account_id   = "cloud-run-sa-${module.log_analysis.deployment_id}"
+  display_name = "Service Account for Cloud Run Log Analysis deployment ${module.log_analysis.deployment_id}"
 }
 
 # Deploy a Cloud Run service to host an example web page
@@ -30,10 +37,11 @@ module "cloud_run" {
   source  = "GoogleCloudPlatform/cloud-run/google"
   version = "~> 0.3.0"
 
-  service_name   = "cloudrun-srv-${module.log_analysis.deployment_id}"
-  project_id     = var.project_id
-  location       = var.region
-  service_labels = var.labels
-  image          = "gcr.io/cloudrun/hello"
-  members        = ["allUsers"]
+  service_name          = "cloudrun-srv-${module.log_analysis.deployment_id}"
+  project_id            = var.project_id
+  location              = var.region
+  service_labels        = var.labels
+  image                 = "gcr.io/cloudrun/hello"
+  members               = ["allUsers"]
+  service_account_email = google_service_account.cloudrun_sa.email
 }

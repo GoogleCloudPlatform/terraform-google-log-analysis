@@ -14,6 +14,11 @@
  * limitations under the License.
  */
 
+locals {
+  custom_sa = var.service_account_email != "" ? true : false
+  sa_email  = local.custom_sa ? var.service_account_email : google_service_account.bigquery_data_transfer_service[0].email
+}
+
 // Enable APIs required
 module "project-services" {
   source      = "terraform-google-modules/project-factory/google//modules/project_services"
@@ -88,45 +93,57 @@ module "log_destination" {
 
 # Create a Service Account for Bigquery Data Transfer jobs
 resource "google_service_account" "bigquery_data_transfer_service" {
-  depends_on = [
-    module.project-services.project_id
-  ]
+  count = local.custom_sa ? 0 : 1
+
   project      = var.project_id
   account_id   = "bq-data-transfer-${random_id.deployment_id.hex}"
   display_name = "Service Account for BigQuery Data Transfer Service"
   description  = "Used to run BigQuery Data Transfer jobs."
+  depends_on = [
+    module.project-services.project_id
+  ]
 }
 
 resource "google_project_iam_member" "bigquery_data_editor" {
+  count = local.custom_sa ? 0 : 1
+
   project = var.project_id
   role    = "roles/bigquery.dataEditor"
-  member  = "serviceAccount:${google_service_account.bigquery_data_transfer_service.email}"
+  member  = "serviceAccount:${local.sa_email}"
 }
 
 resource "google_project_iam_member" "storage_object_viewer" {
+  count = local.custom_sa ? 0 : 1
+
   project = var.project_id
   role    = "roles/storage.objectViewer"
-  member  = "serviceAccount:${google_service_account.bigquery_data_transfer_service.email}"
+  member  = "serviceAccount:${local.sa_email}"
 }
 
 # Add the Service Account Short Term Token Minter role to a Google-managed service account used by the BigQuery Data Transfer Service
 resource "google_project_service_identity" "bigquery_data_transfer_sa" {
+  count = local.custom_sa ? 0 : 1
+
   provider = google-beta
   project  = var.project_id
   service  = "bigquerydatatransfer.googleapis.com"
 }
 
 resource "google_service_account_iam_member" "bigquery_data_transfer_sa_serviceAccountShortTermTokenMinter" {
-  service_account_id = google_service_account.bigquery_data_transfer_service.name
+  count = local.custom_sa ? 0 : 1
+
+  service_account_id = google_service_account.bigquery_data_transfer_service[0].name
   role               = "roles/iam.serviceAccountShortTermTokenMinter"
-  member             = "serviceAccount:${google_project_service_identity.bigquery_data_transfer_sa.email}"
+  member             = "serviceAccount:${google_project_service_identity.bigquery_data_transfer_sa[0].email}"
 }
 
 # https://cloud.google.com/bigquery/docs/enable-transfer-service#manual_service_agent_creation
 resource "google_project_iam_member" "bigquery_data_transfer_sa_agent" {
+  count = local.custom_sa ? 0 : 1
+
   project = var.project_id
   role    = "roles/bigquerydatatransfer.serviceAgent"
-  member  = "serviceAccount:${google_project_service_identity.bigquery_data_transfer_sa.email}"
+  member  = "serviceAccount:${google_project_service_identity.bigquery_data_transfer_sa[0].email}"
 }
 
 resource "google_bigquery_table" "bigquery_data_transfer_destination" {
@@ -153,7 +170,7 @@ resource "google_bigquery_data_transfer_config" "log_transfer" {
   data_source_id         = "google_cloud_storage"
   schedule               = "every day 00:00"
   destination_dataset_id = module.log_destination.resource_name
-  service_account_name   = google_service_account.bigquery_data_transfer_service.email
+  service_account_name   = local.sa_email
   params = {
     data_path_template              = "gs://${resource.google_storage_bucket.ingest_bucket.name}/*.json"
     destination_table_name_template = google_bigquery_table.bigquery_data_transfer_destination.table_id
