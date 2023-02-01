@@ -15,7 +15,7 @@
  */
 
 locals {
-  custom_sa = var.service_account_email != "" ? true : false
+  custom_sa = var.service_account_email != ""
   sa_email  = local.custom_sa ? var.service_account_email : google_service_account.bigquery_data_transfer_service[0].email
 }
 
