@@ -86,7 +86,7 @@ the resources of this module:
 - Cloud Run Admin: `roles/run.admin`
 - BigQuery Admin: `roles/bigquery.admin`
 - Service Account User: `roles/iam.serviceAccountUser`
-- Create Service Accounts: `roles/iam.serviceAccountCreator`
+- Service Account Admin: `roles/iam.serviceAccountAdmin`
 - Project IAM Admin: `roles/resourcemanager.projectIamAdmin`
 - Logs Configuration Writer: `roles/logging.configWriter`
 - Service Usage Admin: `roles/serviceusage.serviceUsageAdmin`
