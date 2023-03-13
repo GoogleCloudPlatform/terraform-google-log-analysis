@@ -8,6 +8,15 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [0.1.6](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/compare/v0.1.5...v0.1.6) (2023-03-13)
+
+
+### Bug Fixes
+
+* add explict dependency, change job freq ([#45](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/issues/45)) ([759b994](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/commit/759b994636265392dbe8c2e4b4e00f94ab8202a3))
+* **deps:** update tf modules ([#41](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/issues/41)) ([904e8bb](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/commit/904e8bbf9a45f65289b5da1c2e060b72c01c5de7))
+* enable uniform bucket level access ([#37](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/issues/37)) ([9dfcef8](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/commit/9dfcef81d91b5ac216a28de6fbbd3ca62957c73f))
+
 ## [0.1.5](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/compare/v0.1.4...v0.1.5) (2022-11-28)
 
 
