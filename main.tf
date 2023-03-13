@@ -45,6 +45,8 @@ resource "google_storage_bucket" "ingest_bucket" {
   project  = var.project_id
   location = var.region
   labels   = var.labels
+
+  uniform_bucket_level_access = true
 }
 
 // Copy a sample file to the bucket created
