@@ -145,13 +145,15 @@ resource "google_bigquery_table" "bigquery_data_transfer_destination" {
 resource "google_bigquery_data_transfer_config" "log_transfer" {
   depends_on = [
     module.log_destination.resource_name,
-    google_bigquery_table.bigquery_data_transfer_destination
+    google_bigquery_table.bigquery_data_transfer_destination,
+    google_service_account_iam_member.bigquery_data_transfer_sa_serviceAccountShortTermTokenMinter,
+    google_project_iam_member.bigquery_data_transfer_sa_agent
   ]
   project                = var.project_id
   display_name           = "Log ingestion from GCS to BQ"
   location               = var.region
   data_source_id         = "google_cloud_storage"
-  schedule               = "every day 00:00"
+  schedule               = "every 15 minutes"
   destination_dataset_id = module.log_destination.resource_name
   service_account_name   = google_service_account.bigquery_data_transfer_service.email
   params = {
