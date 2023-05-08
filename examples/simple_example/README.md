@@ -23,6 +23,7 @@ This example illustrates how to use the `log-analysis` module.
 | bucket\_name | The Cloud Storage bucket to ingest logs from external soruces |
 | cloud\_run\_url | The public URL on which the deployed example website is available |
 | datastudio\_report\_url | The URL to create a new Data Studio report that runs queries against the table for transferred logs via BigQuery Data Trasfer Service |
+| neos\_tutorial\_url | The URL for the in-console tour |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
