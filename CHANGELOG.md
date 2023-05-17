@@ -8,6 +8,14 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [0.2.0](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/compare/v0.1.6...v0.2.0) (2023-05-17)
+
+
+### Features
+
+* add link to in-console tour of solution ([#50](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/issues/50)) ([c820d20](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/commit/c820d207903be0fb8350b691239a94ab2dff2094))
+* adds metadata autogen and validation ([#52](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/issues/52)) ([0d7b83b](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/commit/0d7b83bacbb77f02fe1b971035084c207a6841e0))
+
 ## [0.1.6](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/compare/v0.1.5...v0.1.6) (2023-03-13)
 
 
