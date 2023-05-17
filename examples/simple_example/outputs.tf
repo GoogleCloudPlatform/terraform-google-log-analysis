@@ -28,7 +28,7 @@ output "bigquery_table_name" {
   value       = module.log_analysis.bigquery_table_name
   description = "The BigQuery table name for transferred logs"
 }
-
+  
 output "bigquery_dataset_url" {
   value       = module.log_analysis.bigquery_dataset_url
   description = "The URL to the dataset in the BigQuery UI where you see the tables for logs stored"
@@ -42,4 +42,9 @@ output "datastudio_report_url" {
 output "cloud_run_url" {
   value       = module.cloud_run.service_url
   description = "The public URL on which the deployed example website is available"
+}
+
+output "neos_tutorial_url" {
+  value       = "https://console.cloud.google.com/products/solutions/catalog?walkthrough_id=solutions-in-console--log-analysis-pipeline--tour&project=${var.project_id}"
+  description = "The URL to launch the in-console tutorial for the Log analysis pipeline solution"
 }
