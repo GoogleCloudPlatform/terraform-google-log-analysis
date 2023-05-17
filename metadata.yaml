@@ -19,86 +19,91 @@ metadata:
   annotations:
     config.kubernetes.io/local-config: "true"
 spec:
-  title: Log analysis pipeline
-  source:
-    repo: https://github.com/GoogleCloudPlatform/terraform-google-log-analysis.git
-    sourceType: git
-  version: 0.1.5
-  actuationTool:
-    type: Terraform
-    version: '>= 0.13'
-  description:
-    tagline: Create a pipeline to analyze logs across environments.
-    detailed: |-
-      Create a pipeline to analyze various data and logs of applications running across different environments like Google Cloud, other clouds and on-premises
-      You can choose whether to deploy your solution through the console directly or download as Terraform on GitHub to deploy later.
+  info:
+    title: Log analysis pipeline
+    source:
+      repo: https://github.com/GoogleCloudPlatform/terraform-google-log-analysis.git
+      sourceType: git
+    version: 0.1.6
+    actuationTool:
+      flavor: Terraform
+      version: '>= 0.13'
+    description:
+      tagline: Create a pipeline to analyze logs across environments.
+      detailed: |-
+        Create a pipeline to analyze various data and logs of applications running across different environments like Google Cloud, other clouds and on-premises
+        You can choose whether to deploy your solution through the console directly or download as Terraform on GitHub to deploy later.
+      architecture:
+      - A web server deployed on Cloud Run generates web access logs when a user visits a sample website deployed on it. The web access logs are automatically sent to Logging.
+      - Logging then routes the logs to a designated table in BigQuery per sink configured.
+      - Files that contain application logs can be uploaded into a bucket in Cloud Storage. (This solution deploys a text file that contains a sample web access log in JSON format.)
+      - BigQuery Data Transfer Service then periodically loads the file to a designated table in BigQuery per transfer configured.
+      - You can run queries against the logs in the table or use Data Studio to visualize the logs.
+  content:
     architecture:
-    - A web server deployed on Cloud Run generates web access logs when a user visits a sample website deployed on it. The web access logs are automatically sent to Logging.
-    - Logging then routes the logs to a designated table in BigQuery per sink configured.
-    - Files that contain application logs can be uploaded into a bucket in Cloud Storage. (This solution deploys a text file that contains a sample web access log in JSON format.)
-    - BigQuery Data Transfer Service then periodically loads the file to a designated table in BigQuery per transfer configured.
-    - You can run queries against the logs in the table or use Data Studio to visualize the logs.
-  documentation:
-  - title: Architecture Diagram
-    url: https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/blob/main/assets/log_analysis_pipeline_v1.svg
-  examples:
-  - name: simple_example
-    location: examples/simple_example
-  variables:
-  - name: delete_contents_on_destroy
-    description: If set to true, delete all BQ resources.
-    type: bool
-    default: false
-    required: false
-  - name: deployment_name
-    description: The name used to provision resources with.
-    type: string
-    default: log-analysis
-    required: false
-  - name: enable_apis
-    description: Whether or not to enable underlying apis in this solution.
-    type: string
-    default: true
-    required: false
-  - name: labels
-    description: A set of key/value label pairs to assign to the resources deployed by this blueprint.
-    type: map(string)
-    default: {}
-    required: false
-  - name: project_id
-    description: The project ID to provision resources to.
-    type: string
-    required: true
-  - name: region
-    description: The Google Cloud region name to provision resources in.
-    type: string
-    default: us-central1
-    required: false
-  outputs:
-  - name: bigquery_dataset_name
-    description: The BigQuery dataset name which the transferred log table is in
-  - name: bigquery_dataset_url
-    description: The URL to the dataset in the BigQuery UI where you see the tables for logs stored
-  - name: bigquery_table_name
-    description: The BigQuery table name for transferred logs
-  - name: bucket_name
-    description: The Cloud Storage bucket to ingest logs from external soruces
-  - name: datastudio_report_url
-    description: The URL to create a new Data Studio report that runs queries against the table for transferred logs via BigQuery Data Trasfer Service
-  - name: deployment_id
-    description: The random ID generated for each deployment
-  roles:
-  - level: Project
+      diagramUrl: https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/blob/main/assets/log_analysis_pipeline_v1.svg
+      description:
+      - 1. Step 1
+      - 2. Step 2
+      - 3. Step 3
+    documentation:
+    - title: Architecture Diagram
+      url: https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/blob/main/assets/log_analysis_pipeline_v1.svg
+    examples:
+    - name: simple_example
+      location: examples/simple_example
+  interfaces:
+    variables:
+    - name: delete_contents_on_destroy
+      description: If set to true, delete all BQ resources.
+      varType: bool
+      defaultValue: false
+    - name: deployment_name
+      description: The name used to provision resources with.
+      varType: string
+      defaultValue: log-analysis
+    - name: enable_apis
+      description: Whether or not to enable underlying apis in this solution.
+      varType: string
+      defaultValue: true
+    - name: labels
+      description: A set of key/value label pairs to assign to the resources deployed by this blueprint.
+      varType: map(string)
+      defaultValue: {}
+    - name: project_id
+      description: The project ID to provision resources to.
+      varType: string
+      required: true
+    - name: region
+      description: The Google Cloud region name to provision resources in.
+      varType: string
+      defaultValue: us-central1
+    outputs:
+    - name: bigquery_dataset_name
+      description: The BigQuery dataset name which the transferred log table is in
+    - name: bigquery_dataset_url
+      description: The URL to the dataset in the BigQuery UI where you see the tables for logs stored
+    - name: bigquery_table_name
+      description: The BigQuery table name for transferred logs
+    - name: bucket_name
+      description: The Cloud Storage bucket to ingest logs from external soruces
+    - name: datastudio_report_url
+      description: The URL to create a new Data Studio report that runs queries against the table for transferred logs via BigQuery Data Trasfer Service
+    - name: deployment_id
+      description: The random ID generated for each deployment
+  requirements:
     roles:
-    - roles/owner
-  services:
-  - cloudresourcemanager.googleapis.com
-  - iam.googleapis.com
-  - storage-api.googleapis.com
-  - storage.googleapis.com
-  - serviceusage.googleapis.com
-  - compute.googleapis.com
-  - logging.googleapis.com
-  - run.googleapis.com
-  - bigquery.googleapis.com
-  - bigquerydatatransfer.googleapis.com
+    - level: Project
+      roles:
+      - roles/owner
+    services:
+    - cloudresourcemanager.googleapis.com
+    - iam.googleapis.com
+    - storage-api.googleapis.com
+    - storage.googleapis.com
+    - serviceusage.googleapis.com
+    - compute.googleapis.com
+    - logging.googleapis.com
+    - run.googleapis.com
+    - bigquery.googleapis.com
+    - bigquerydatatransfer.googleapis.com
