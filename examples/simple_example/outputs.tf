@@ -28,7 +28,7 @@ output "bigquery_table_name" {
   value       = module.log_analysis.bigquery_table_name
   description = "The BigQuery table name for transferred logs"
 }
-  
+
 output "bigquery_dataset_url" {
   value       = module.log_analysis.bigquery_dataset_url
   description = "The URL to the dataset in the BigQuery UI where you see the tables for logs stored"
