@@ -8,6 +8,18 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [0.3.0](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/compare/v0.2.0...v0.3.0) (2023-05-20)
+
+
+### Features
+
+* updates make target to generate display metadata as well ([#58](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/issues/58)) ([0410217](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/commit/04102170b3a9a67d5deb0eb372344857626c392a))
+
+
+### Bug Fixes
+
+* address linting errors in output.tf ([#56](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/issues/56)) ([83a461c](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/commit/83a461c66490ee78844758a2bbf91ec6c5bfc4cf))
+
 ## [0.2.0](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/compare/v0.1.6...v0.2.0) (2023-05-17)
 
 
