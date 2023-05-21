@@ -16,7 +16,7 @@
 
 module "log_analysis" {
   source  = "GoogleCloudPlatform/log-analysis/google"
-  version = "~> 0.1.4"
+  version = "~> 0.2.0"
 
   project_id                 = var.project_id
   region                     = var.region
