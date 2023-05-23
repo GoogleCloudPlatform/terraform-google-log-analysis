@@ -16,7 +16,7 @@
 
 module "log_analysis" {
   source  = "GoogleCloudPlatform/log-analysis/google"
-  version = "~> 0.2.0"
+  version = "~> 0.3.0"
 
   project_id                 = var.project_id
   region                     = var.region
@@ -28,7 +28,7 @@ module "log_analysis" {
 # Deploy a Cloud Run service to host an example web page
 module "cloud_run" {
   source  = "GoogleCloudPlatform/cloud-run/google"
-  version = "~> 0.6.0"
+  version = "~> 0.7.0"
 
   service_name   = "cloudrun-srv-${module.log_analysis.deployment_id}"
   project_id     = var.project_id
