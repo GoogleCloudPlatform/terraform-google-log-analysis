@@ -8,6 +8,13 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [0.3.1](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/compare/v0.3.0...v0.3.1) (2023-06-13)
+
+
+### Bug Fixes
+
+* **deps:** update cft/developer-tools docker tag to v1.13 ([#64](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/issues/64)) ([13ce382](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/commit/13ce382769c0855671f41252ab362eda2ad8b851))
+
 ## [0.3.0](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/compare/v0.2.0...v0.3.0) (2023-05-20)
 
 
