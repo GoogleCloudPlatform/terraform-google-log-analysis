@@ -8,6 +8,13 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [0.3.1](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/compare/v0.3.0...v0.3.1) (2023-06-16)
+
+
+### Bug Fixes
+
+* Update int.cloudbuild.yaml to use LR billing ([#66](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/issues/66)) ([107f65c](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/commit/107f65cd676ff10e7aa2521b480c8da2c695016c))
+
 ## [0.3.0](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/compare/v0.2.0...v0.3.0) (2023-05-20)
 
 
