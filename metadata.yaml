@@ -24,7 +24,7 @@ spec:
     source:
       repo: https://github.com/GoogleCloudPlatform/terraform-google-log-analysis.git
       sourceType: git
-    version: 0.2.0
+    version: 0.3.1
     actuationTool:
       flavor: Terraform
       version: '>= 0.13'
@@ -38,7 +38,7 @@ spec:
       - Logging then routes the logs to a designated table in BigQuery per sink configured.
       - Files that contain application logs can be uploaded into a bucket in Cloud Storage. (This solution deploys a text file that contains a sample web access log in JSON format.)
       - BigQuery Data Transfer Service then periodically loads the file to a designated table in BigQuery per transfer configured.
-      - You can run queries against the logs in the table or use Looker Studio to visualize the logs.
+      - You can run queries against the logs in the table or use Data Studio to visualize the logs.
   content:
     architecture:
       diagramUrl: https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/blob/main/assets/log_analysis_pipeline_v1.svg
