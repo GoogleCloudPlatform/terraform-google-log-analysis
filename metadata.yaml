@@ -38,7 +38,7 @@ spec:
       - Logging then routes the logs to a designated table in BigQuery per sink configured.
       - Files that contain application logs can be uploaded into a bucket in Cloud Storage. (This solution deploys a text file that contains a sample web access log in JSON format.)
       - BigQuery Data Transfer Service then periodically loads the file to a designated table in BigQuery per transfer configured.
-      - You can run queries against the logs in the table or use Data Studio to visualize the logs.
+      - You can run queries against the logs in the table or use Looker Studio to visualize the logs.
   content:
     architecture:
       diagramUrl: https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/blob/main/assets/log_analysis_pipeline_v1.svg
@@ -88,7 +88,7 @@ spec:
     - name: bucket_name
       description: The Cloud Storage bucket to ingest logs from external soruces
     - name: datastudio_report_url
-      description: The URL to create a new Data Studio report that runs queries against the table for transferred logs via BigQuery Data Trasfer Service
+      description: The URL to create a new Looker Studio report that runs queries against the table for transferred logs via BigQuery Data Trasfer Service
     - name: deployment_id
       description: The random ID generated for each deployment
   requirements:
