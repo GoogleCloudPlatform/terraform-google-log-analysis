@@ -8,6 +8,13 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [0.3.2](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/compare/v0.3.1...v0.3.2) (2023-12-15)
+
+
+### Bug Fixes
+
+* **deps:** Update Terraform Google Provider to v5 (major) ([#83](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/issues/83)) ([a3f6212](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/commit/a3f6212f5bc16cb75dbc0c71681fcc1cb539cf06))
+
 ## [0.3.1](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/compare/v0.3.0...v0.3.1) (2023-06-16)
 
 
