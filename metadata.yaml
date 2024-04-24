@@ -24,7 +24,7 @@ spec:
     source:
       repo: https://github.com/GoogleCloudPlatform/terraform-google-log-analysis.git
       sourceType: git
-    version: 0.3.2
+    version: 0.4.0
     actuationTool:
       flavor: Terraform
       version: '>= 0.13'
