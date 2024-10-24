@@ -62,7 +62,7 @@ resource "google_storage_bucket_object" "sample_data" {
 # Set up Logs Router to route Cloud Run web access logs to BigQuery
 module "log_export" {
   source  = "terraform-google-modules/log-export/google"
-  version = "~> 8.0"
+  version = "~> 10.0"
 
   destination_uri        = module.log_destination.destination_uri
   filter                 = "log_name=~\".*run.googleapis.com%2Frequests.*\""
@@ -78,7 +78,7 @@ module "log_export" {
 # Configure a Cloud Logging sink to route logs to BigQuery
 module "log_destination" {
   source  = "terraform-google-modules/log-export/google//modules/bigquery"
-  version = "~> 8.0"
+  version = "~> 10.0"
 
   project_id                 = var.project_id
   dataset_name               = "${replace(var.deployment_name, "-", "_")}_logsink"
