@@ -8,6 +8,25 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [0.5.0](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/compare/v0.4.0...v0.5.0) (2025-12-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* **deps:** Update Terraform terraform-google-modules/log-export/google to v10 ([#125](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/issues/125))
+* **deps:** Update Terraform terraform-google-modules/project-factory/google to v17 ([#124](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/issues/124))
+
+### Features
+
+* **deps:** Update Terraform Google Provider to v6 (major) ([#121](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/issues/121)) ([7824c8e](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/commit/7824c8e1d833d52da89aa49b268fff3bb80a598b))
+* **deps:** Update Terraform Google Provider to v7 (major) ([#146](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/issues/146)) ([9eba14a](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/commit/9eba14a20e61a0fbc6c2f9d9cb4113ac95a00bbf))
+
+
+### Bug Fixes
+
+* **deps:** Update Terraform terraform-google-modules/log-export/google to v10 ([#125](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/issues/125)) ([5c5c587](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/commit/5c5c587892b68e6725027b04fff087d50e493518))
+* **deps:** Update Terraform terraform-google-modules/project-factory/google to v17 ([#124](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/issues/124)) ([d0dd42d](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/commit/d0dd42df6154475bbf7d7befc4d6bc8cbb4b500f))
+
 ## [0.4.0](https://github.com/GoogleCloudPlatform/terraform-google-log-analysis/compare/v0.3.2...v0.4.0) (2024-04-23)
 
 
