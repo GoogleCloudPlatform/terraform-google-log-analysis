@@ -32,7 +32,7 @@ Basic usage of this module is as follows:
 ```hcl
 module "log_analysis" {
   source  = "GoogleCloudPlatform/log-analysis/google"
-  version = "~> 0.4"
+  version = "~> 0.5"
 
   project_id  = "<PROJECT ID>"
 }
